@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import CaseStudyCard from './CaseStudyCard.astro';
+import { withBase } from '../utils/paths';
 
 const projects = (await getCollection('portfolio'))
   .filter((project) => project.data.featured)
@@ -26,7 +27,7 @@ const projects = (await getCollection('portfolio'))
         />
       ))}
     </div>
-    <p class="section-link"><a class="button secondary" href="/portfolio">View All Projects</a></p>
+    <p class="section-link"><a class="button secondary" href={withBase('/portfolio')}>View All Projects</a></p>
   </div>
 </section>
 

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogCard from './BlogCard.astro';
+import { withBase } from '../utils/paths';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -24,7 +25,7 @@ const posts = (await getCollection('blog'))
         />
       ))}
     </div>
-    <p class="section-link"><a class="button secondary" href="/blog">Read Articles</a></p>
+    <p class="section-link"><a class="button secondary" href={withBase('/blog')}>Read Articles</a></p>
   </div>
 </section>
 

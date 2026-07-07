@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../utils/paths';
+
 interface Props {
   href: string;
   title: string;
@@ -10,8 +12,8 @@ interface Props {
 
 const { href, title, description, category, date, image } = Astro.props;
 ---
-<a class="blog-card card lift" href={href}>
-  <img src={image} alt="" loading="lazy" />
+<a class="blog-card card lift" href={withBase(href)}>
+  <img src={withBase(image)} alt="" loading="lazy" />
   <div>
     <span class="pill">{category}</span>
     <time datetime={date.toISOString()}>{date.toLocaleDateString('en', { month: 'short', day: 'numeric', year: 'numeric' })}</time>

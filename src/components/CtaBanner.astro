@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../utils/paths';
+
 interface Props {
   heading?: string;
   cta?: string;
@@ -10,7 +12,7 @@ const { heading = "Have a process that's slowing your team down?", cta = "Let's 
 <section class="cta-band">
   <div class="container cta-inner">
     <h2>{heading}</h2>
-    <a class="button light" href={href}>{cta}</a>
+    <a class="button light" href={withBase(href)}>{cta}</a>
   </div>
 </section>
 

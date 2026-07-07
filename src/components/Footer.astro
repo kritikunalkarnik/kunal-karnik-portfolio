@@ -1,18 +1,20 @@
 ---
+import { withBase } from '../utils/paths';
+
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
   <div class="container footer-grid">
     <div>
-      <a class="footer-brand" href="/">Kunal Karnik</a>
+      <a class="footer-brand" href={withBase('/')}>Kunal Karnik</a>
       <p>Building meaningful technology. Creating lasting impact.</p>
     </div>
     <nav aria-label="Footer">
-      <a href="/#process">Process</a>
-      <a href="/portfolio">Portfolio</a>
-      <a href="/blog">Blog</a>
-      <a href="/about">About</a>
-      <a href="/careers">Careers</a>
+      <a href={withBase('/#process')}>Process</a>
+      <a href={withBase('/portfolio')}>Portfolio</a>
+      <a href={withBase('/blog')}>Blog</a>
+      <a href={withBase('/about')}>About</a>
+      <a href={withBase('/careers')}>Careers</a>
     </nav>
   </div>
   <div class="container footer-bottom">

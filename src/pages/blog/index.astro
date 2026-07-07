@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import { withBase } from '../../utils/paths';
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const categories = [...new Set(posts.map((post) => post.data.category))];
@@ -17,8 +18,8 @@ const categories = [...new Set(posts.map((post) => post.data.category))];
   <section class="section">
     <div class="container">
       <div class="filters">
-        <a class="pill" href="/blog">All</a>
-        {categories.map((category) => <a class="pill" href={`/blog?category=${category.toLowerCase().replaceAll(' ', '-')}`}>{category}</a>)}
+        <a class="pill" href={withBase('/blog')}>All</a>
+        {categories.map((category) => <a class="pill" href={withBase(`/blog?category=${category.toLowerCase().replaceAll(' ', '-')}`)}>{category}</a>)}
       </div>
       <div class="grid three">
         {posts.map((post) => (

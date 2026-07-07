@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import { withBase } from '../../utils/paths';
 
 const projects = (await getCollection('portfolio')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const industries = [...new Set(projects.map((project) => project.data.industry))];
@@ -17,8 +18,8 @@ const industries = [...new Set(projects.map((project) => project.data.industry))
   <section class="section">
     <div class="container">
       <div class="filters" aria-label="Industry filters">
-        <a class="pill" href="/portfolio">All</a>
-        {industries.map((industry) => <a class="pill" href={`/portfolio?industry=${industry.toLowerCase().replaceAll(' ', '-')}`}>{industry}</a>)}
+        <a class="pill" href={withBase('/portfolio')}>All</a>
+        {industries.map((industry) => <a class="pill" href={withBase(`/portfolio?industry=${industry.toLowerCase().replaceAll(' ', '-')}`)}>{industry}</a>)}
       </div>
       <div class="grid three">
         {projects.map((project) => (

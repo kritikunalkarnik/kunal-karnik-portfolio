@@ -1,5 +1,6 @@
 ---
 import { industries } from '../data/site';
+import { withBase } from '../utils/paths';
 ---
 <section class="section" id="industries">
   <div class="container">
@@ -10,7 +11,7 @@ import { industries } from '../data/site';
     </div>
     <div class="grid three animate-on-scroll stagger-children">
       {industries.map(([title, description, slug], index) => (
-        <a class={`industry card lift tint-${index + 1}`} href={`/portfolio?industry=${slug}`}>
+        <a class={`industry card lift tint-${index + 1}`} href={withBase(`/portfolio?industry=${slug}`)}>
           <span class="icon-tile">{String(index + 1).padStart(2, '0')}</span>
           <h3>{title}</h3>
           <p>{description}</p>

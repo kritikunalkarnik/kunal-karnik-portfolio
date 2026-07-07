@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../utils/paths';
+
 interface Props {
   href: string;
   title: string;
@@ -10,8 +12,8 @@ interface Props {
 
 const { href, title, description, industry, result, image } = Astro.props;
 ---
-<a class="case-card card lift" href={href}>
-  <img src={image} alt="" loading="lazy" />
+<a class="case-card card lift" href={withBase(href)}>
+  <img src={withBase(image)} alt="" loading="lazy" />
   <span class="pill">{industry}</span>
   <h3>{title}</h3>
   <p>{description}</p>

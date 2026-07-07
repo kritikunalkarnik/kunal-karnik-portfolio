@@ -1,3 +1,6 @@
+---
+import { withBase } from '../utils/paths';
+---
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-copy">
@@ -6,11 +9,11 @@
       <p class="lead">With nearly a decade across engineering, technical leadership, product delivery, and team management, I help organizations turn operational friction into reliable digital products with measurable business value.</p>
       <div class="hero-actions">
         <a class="button primary" href="#contact">Let's Talk</a>
-        <a class="button secondary" href="/portfolio">See Featured Projects</a>
+        <a class="button secondary" href={withBase('/portfolio')}>See Featured Projects</a>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
-      <img src="/images/og/kunal-operations-hero.png" alt="" />
+      <img src={withBase('/images/og/kunal-operations-hero.png')} alt="" />
       <div class="visual-chip top">
         <strong>15+</strong>
         <span>Projects delivered</span>

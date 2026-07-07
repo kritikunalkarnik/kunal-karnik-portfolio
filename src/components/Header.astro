@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../utils/paths';
+
 const nav = [
   { label: 'Why I Exist', href: '/#why' },
   { label: 'My Process', href: '/#process' },
@@ -10,19 +12,19 @@ const nav = [
 ---
 <header class="site-header" data-header>
   <div class="container nav-shell">
-    <a class="wordmark" href="/" aria-label="Kunal Karnik home">Kunal Karnik</a>
+    <a class="wordmark" href={withBase('/')} aria-label="Kunal Karnik home">Kunal Karnik</a>
     <nav class="desktop-nav" aria-label="Primary">
-      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
     </nav>
-    <a class="button primary desktop-cta" href="/#contact">Work With Me</a>
+    <a class="button primary desktop-cta" href={withBase('/#contact')}>Work With Me</a>
     <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mobile-panel" data-mobile-menu>
     <nav aria-label="Mobile primary">
-      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
-      <a class="button primary" href="/#contact">Work With Me</a>
+      {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+      <a class="button primary" href={withBase('/#contact')}>Work With Me</a>
     </nav>
   </div>
 </header>

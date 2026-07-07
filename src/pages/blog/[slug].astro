@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import { withBase } from '../../utils/paths';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -23,7 +24,7 @@ const related = (await getCollection('blog')).filter((item) => item.slug !== pos
       </div>
     </header>
     <div class="container article-body">
-      <img src={post.data.image} alt="" />
+      <img src={withBase(post.data.image)} alt="" />
       <div class="prose">
         <Content />
         <div class="author card">
@@ -43,7 +44,7 @@ const related = (await getCollection('blog')).filter((item) => item.slug !== pos
           <BlogCard href={`/blog/${item.slug}`} title={item.data.title} description={item.data.description} category={item.data.category} date={item.data.date} image={item.data.image} />
         ))}
       </div>
-      <p class="back"><a class="button secondary" href="/blog">Back to Articles</a></p>
+      <p class="back"><a class="button secondary" href={withBase('/blog')}>Back to Articles</a></p>
     </div>
   </section>
 </BaseLayout>
