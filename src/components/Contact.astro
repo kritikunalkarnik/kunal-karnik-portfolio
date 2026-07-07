@@ -1,0 +1,91 @@
+<section class="contact section" id="contact">
+  <div class="container contact-grid">
+    <div class="animate-on-scroll">
+      <span class="eyebrow">Work With Me</span>
+      <h2>Let's map the process that is costing your team time.</h2>
+      <p>Send a quick note with the challenge, team, and current workflow. I will respond with useful next steps rather than a generic sales script.</p>
+      <div class="contact-links">
+        <a href="mailto:hello@kunalkarnik.com">hello@kunalkarnik.com</a>
+        <a href="tel:+919773777504">+91 97737 77504</a>
+        <a href="https://wa.me/919773777504?text=Hi%20Kunal%2C%20I'd%20like%20to%20discuss%20a%20project." target="_blank" rel="noreferrer">WhatsApp Kunal</a>
+      </div>
+    </div>
+    <form class="card animate-on-scroll" action="mailto:hello@kunalkarnik.com?subject=Project%20inquiry%20from%20website" method="POST" enctype="text/plain">
+      <label>Name<input name="name" required autocomplete="name" /></label>
+      <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+      <label>Phone<input name="phone" autocomplete="tel" placeholder="+91 97737 77504" /></label>
+      <label>Company<input name="company" autocomplete="organization" /></label>
+      <label>Brief<textarea name="message" rows="5" required></textarea></label>
+      <button class="button primary" type="submit">Send Inquiry</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: #0f172a;
+    color: #fff;
+  }
+
+  .contact .eyebrow {
+    color: #93c5fd;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  h2 {
+    margin-top: 16px;
+  }
+
+  p {
+    margin-top: 18px;
+    color: #cbd5e1;
+    font-size: 1.08rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .contact-links a {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    color: #fff;
+  }
+
+  form {
+    display: grid;
+    gap: 14px;
+  }
+
+  label {
+    display: grid;
+    gap: 6px;
+    color: var(--charcoal);
+    font-weight: 800;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 11px 12px;
+    resize: vertical;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Careers - Kunal Karnik">
+  <section class="page-hero">
+    <div class="container inner">
+      <span class="eyebrow">Careers</span>
+      <h1>Build real systems for real enterprise problems.</h1>
+      <p class="lead">For engineers, designers, and operators who want hands-on experience solving practical business problems with thoughtful technology.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container careers-grid">
+      <div>
+        <h2>Why Kunal Karnik</h2>
+        <ul class="values">
+          <li>Work close to business problems, not isolated tickets.</li>
+          <li>Learn how discovery, design, engineering, and adoption fit together.</li>
+          <li>Grow through mentorship and direct project responsibility.</li>
+        </ul>
+        <div class="card empty">
+          <h3>Current Opportunities</h3>
+          <p>General applications are open for project-based collaboration, internships, and early-career engineering roles as new client work begins.</p>
+        </div>
+      </div>
+      <form class="card" action="mailto:hello@kunalkarnik.com?subject=Career%20interest%20from%20website" method="POST" enctype="text/plain">
+        <label>Name<input name="name" required /></label>
+        <label>Email<input type="email" name="email" required /></label>
+        <label>Resume<input type="file" name="resume" accept=".pdf,.doc,.docx" /></label>
+        <label>Tell me about yourself<textarea name="message" rows="5"></textarea></label>
+        <button class="button primary" type="submit">Submit Interest</button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .careers-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    gap: 42px;
+  }
+
+  .values {
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+
+  .empty {
+    margin-top: 28px;
+  }
+
+  form {
+    display: grid;
+    gap: 14px;
+  }
+
+  label {
+    display: grid;
+    gap: 6px;
+    font-weight: 800;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 11px 12px;
+  }
+
+  @media (max-width: 860px) {
+    .careers-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+---
+<BaseLayout title="About Kunal Karnik - Technology Leadership and Product Delivery">
+  <section class="page-hero">
+    <div class="container inner">
+      <span class="eyebrow">About</span>
+      <h1>Practical technology leadership for teams that need results, not ceremony.</h1>
+      <p class="lead">I bring engineering depth, delivery discipline, and business empathy to organizations modernizing complex operations.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container about-grid">
+      <article class="prose">
+        <h2>My Journey</h2>
+        <p>Kunal Karnik is positioned as a technology leader, product strategist, and engineering consultant with nearly a decade of cross-functional experience across engineering, technical leadership, product delivery, and team management.</p>
+        <p>The work starts with listening: understanding how operations run today, where teams lose time, and what technology can realistically improve.</p>
+        <h2>Leadership & Experience</h2>
+        <p>I help bridge the gap between business priorities and engineering execution, making sure solutions are clear enough for leaders, usable enough for teams, and stable enough for production.</p>
+      </article>
+      <aside class="card">
+        <h2>Vision & Values</h2>
+        <p>Build meaningful technology that creates lasting impact, while giving emerging engineers real experience solving enterprise problems.</p>
+        <ul>
+          <li>Clarity before code</li>
+          <li>Adoption before novelty</li>
+          <li>Measurable value before feature volume</li>
+          <li>Partnership before vendor behavior</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+  <CtaBanner heading="Need a partner who can translate operations into software?" cta="Start a Conversation" />
+</BaseLayout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.72fr;
+    gap: 44px;
+  }
+
+  aside p,
+  aside li {
+    color: var(--muted);
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

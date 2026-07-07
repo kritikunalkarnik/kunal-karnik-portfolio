@@ -1,0 +1,168 @@
+---
+const nav = [
+  { label: 'Why I Exist', href: '/#why' },
+  { label: 'My Process', href: '/#process' },
+  { label: 'What I Build', href: '/#services' },
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'About', href: '/about' }
+];
+---
+<header class="site-header" data-header>
+  <div class="container nav-shell">
+    <a class="wordmark" href="/" aria-label="Kunal Karnik home">Kunal Karnik</a>
+    <nav class="desktop-nav" aria-label="Primary">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <a class="button primary desktop-cta" href="/#contact">Work With Me</a>
+    <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" data-menu-toggle>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-panel" data-mobile-menu>
+    <nav aria-label="Mobile primary">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a class="button primary" href="/#contact">Work With Me</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const panel = document.querySelector('[data-mobile-menu]');
+  let lastY = window.scrollY;
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    panel?.classList.toggle('open', !expanded);
+    document.body.classList.toggle('menu-open', !expanded);
+  });
+
+  panel?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      panel.classList.remove('open');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header?.classList.toggle('scrolled', y > 8);
+    header?.classList.toggle('hidden', y > lastY && y > 160);
+    lastY = Math.max(y, 0);
+  }, { passive: true });
+</script>
+
+<style>
+  .site-header {
+    position: fixed;
+    z-index: 50;
+    inset: 0 0 auto;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.92);
+    transition: transform 180ms ease, box-shadow 180ms ease, backdrop-filter 180ms ease;
+  }
+
+  .site-header.scrolled {
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(14px);
+  }
+
+  .site-header.hidden {
+    transform: translateY(-100%);
+  }
+
+  .nav-shell {
+    display: flex;
+    min-height: 66px;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .wordmark {
+    margin-right: auto;
+    color: var(--charcoal);
+    font-size: 1.08rem;
+    font-weight: 900;
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: #475569;
+    font-size: 0.9rem;
+    font-weight: 750;
+  }
+
+  .desktop-nav a:hover {
+    color: var(--blue);
+  }
+
+  .desktop-cta {
+    white-space: nowrap;
+  }
+
+  .menu-button {
+    display: none;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+  }
+
+  .menu-button span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin: 3px auto;
+    border-radius: 999px;
+    background: var(--charcoal);
+  }
+
+  .mobile-panel {
+    display: none;
+  }
+
+  @media (max-width: 960px) {
+    .desktop-nav,
+    .desktop-cta {
+      display: none;
+    }
+
+    .menu-button {
+      display: block;
+    }
+
+    .mobile-panel {
+      position: fixed;
+      inset: 66px 0 0;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.98);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .mobile-panel.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-panel nav {
+      display: grid;
+      gap: 22px;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 850;
+    }
+  }
+</style>

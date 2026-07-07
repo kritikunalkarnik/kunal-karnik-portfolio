@@ -1,0 +1,78 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const related = (await getCollection('blog')).filter((item) => item.slug !== post.slug).slice(0, 2);
+---
+<BaseLayout title={`${post.data.title} - Kunal Karnik`} description={post.data.description}>
+  <article>
+    <header class="page-hero article-hero">
+      <div class="container inner">
+        <span class="eyebrow">{post.data.category}</span>
+        <h1>{post.data.title}</h1>
+        <p class="lead">{post.data.description}</p>
+        <time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('en', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+      </div>
+    </header>
+    <div class="container article-body">
+      <img src={post.data.image} alt="" />
+      <div class="prose">
+        <Content />
+        <div class="author card">
+          <strong>{post.data.author}</strong>
+          <p>Technology strategist and engineering consultant focused on practical delivery and measurable adoption.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+  <section class="section soft">
+    <div class="container">
+      <div class="section-head">
+        <h2>Related Articles</h2>
+      </div>
+      <div class="grid two">
+        {related.map((item) => (
+          <BlogCard href={`/blog/${item.slug}`} title={item.data.title} description={item.data.description} category={item.data.category} date={item.data.date} image={item.data.image} />
+        ))}
+      </div>
+      <p class="back"><a class="button secondary" href="/blog">Back to Articles</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  time {
+    display: block;
+    margin-top: 18px;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .article-body {
+    max-width: 860px;
+    padding: 56px 0 80px;
+  }
+
+  .article-body > img {
+    width: 100%;
+    border-radius: var(--radius);
+    margin-bottom: 42px;
+  }
+
+  .author {
+    margin-top: 42px;
+  }
+
+  .back {
+    margin-top: 28px;
+    text-align: center;
+  }
+</style>

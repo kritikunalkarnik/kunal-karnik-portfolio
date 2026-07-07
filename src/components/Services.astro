@@ -1,0 +1,31 @@
+---
+import { services } from '../data/site';
+---
+<section class="section soft" id="services">
+  <div class="container">
+    <div class="section-head animate-on-scroll">
+      <span class="eyebrow">What I Build</span>
+      <h2>Solutions designed around your processes.</h2>
+      <p class="lead">End-to-end technology for business workflows, not the other way around.</p>
+    </div>
+    <div class="grid three animate-on-scroll stagger-children">
+      {services.map(([icon, title, description]) => (
+        <article class="card lift">
+          <span class="icon-tile">{icon}</span>
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  article h3 {
+    margin: 18px 0 10px;
+  }
+
+  article p {
+    color: var(--muted);
+  }
+</style>

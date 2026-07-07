@@ -1,0 +1,72 @@
+---
+import { techGroups } from '../data/site';
+---
+<section class="section soft" id="tech-stack">
+  <div class="container">
+    <div class="section-head animate-on-scroll">
+      <span class="eyebrow">Technology Stack</span>
+      <h2>I pick the right tool for the job.</h2>
+      <p class="lead">Technology decisions are made during strategy based on requirements, existing systems, and team capability.</p>
+    </div>
+    <div class="tech-groups animate-on-scroll">
+      {techGroups.map(([group, items]) => (
+        <section>
+          <h3>{group}</h3>
+          <div>
+            {items.map((item) => <span>{item}</span>)}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-groups {
+    display: grid;
+    gap: 18px;
+  }
+
+  .tech-groups section {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 18px;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    background: #fff;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .tech-groups div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tech-groups span {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    color: #475569;
+    background: #fff;
+    filter: grayscale(1);
+    transition: color 160ms ease, border-color 160ms ease, filter 160ms ease;
+  }
+
+  .tech-groups span:hover {
+    color: var(--blue);
+    border-color: #bfdbfe;
+    filter: grayscale(0);
+  }
+
+  @media (max-width: 680px) {
+    .tech-groups section {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

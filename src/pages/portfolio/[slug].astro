@@ -1,0 +1,86 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('portfolio');
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+<BaseLayout title={`${project.data.title} - Kunal Karnik`} description={project.data.description}>
+  <section class="page-hero case-hero">
+    <div class="container detail-grid">
+      <div>
+        <span class="eyebrow">{project.data.industry}</span>
+        <h1>{project.data.title}</h1>
+        <p class="lead">{project.data.description}</p>
+      </div>
+      <img src={project.data.image} alt="" />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container detail-grid">
+      <aside class="card facts">
+        <h2>Quick Facts</h2>
+        {project.data.facts.map((fact) => <p><strong>{fact.label}</strong><span>{fact.value}</span></p>)}
+        <h3>Stack</h3>
+        <div>{project.data.stack.map((item) => <span class="pill">{item}</span>)}</div>
+      </aside>
+      <article class="prose">
+        <Content />
+        <p><a class="button secondary" href="/portfolio">Back to Portfolio</a></p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 0.72fr 1fr;
+    gap: 42px;
+    align-items: start;
+  }
+
+  .case-hero img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .facts {
+    position: sticky;
+    top: 96px;
+  }
+
+  .facts p {
+    display: grid;
+    gap: 2px;
+    margin: 16px 0;
+    color: var(--muted);
+  }
+
+  .facts strong {
+    color: var(--charcoal);
+  }
+
+  .facts div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 900px) {
+    .detail-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .facts {
+      position: static;
+    }
+  }
+</style>

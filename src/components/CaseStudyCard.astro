@@ -1,0 +1,51 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  industry: string;
+  result: string;
+  image: string;
+}
+
+const { href, title, description, industry, result, image } = Astro.props;
+---
+<a class="case-card card lift" href={href}>
+  <img src={image} alt="" loading="lazy" />
+  <span class="pill">{industry}</span>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <strong>{result}</strong>
+</a>
+
+<style>
+  .case-card {
+    display: grid;
+    gap: 14px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .pill,
+  h3,
+  p,
+  strong {
+    margin-inline: 20px;
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 20px;
+    color: var(--green);
+  }
+
+  p {
+    color: var(--muted);
+  }
+</style>

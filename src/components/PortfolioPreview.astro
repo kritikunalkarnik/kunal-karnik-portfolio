@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import CaseStudyCard from './CaseStudyCard.astro';
+
+const projects = (await getCollection('portfolio'))
+  .filter((project) => project.data.featured)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="section-head animate-on-scroll">
+      <span class="eyebrow">Portfolio</span>
+      <h2>Featured project patterns.</h2>
+      <p class="lead">Representative case studies based on the kinds of operational systems I build.</p>
+    </div>
+    <div class="grid three animate-on-scroll stagger-children">
+      {projects.map((project) => (
+        <CaseStudyCard
+          href={`/portfolio/${project.slug}`}
+          title={project.data.title}
+          description={project.data.description}
+          industry={project.data.industry}
+          result={project.data.result}
+          image={project.data.image}
+        />
+      ))}
+    </div>
+    <p class="section-link"><a class="button secondary" href="/portfolio">View All Projects</a></p>
+  </div>
+</section>
+
+<style>
+  .section-link {
+    margin-top: 28px;
+    text-align: center;
+  }
+</style>

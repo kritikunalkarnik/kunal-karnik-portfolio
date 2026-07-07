@@ -1,0 +1,63 @@
+<section class="section soft" id="engagement">
+  <div class="container">
+    <div class="section-head animate-on-scroll">
+      <span class="eyebrow">How I Work</span>
+      <h2>Transparent engagement models. No surprises.</h2>
+    </div>
+    <div class="grid three animate-on-scroll stagger-children">
+      {[
+        ['Discovery & Strategy', '2-4 weeks', 'You need clarity before a build', 'A process map, bottleneck report, solution architecture, and budget estimate you can act on.'],
+        ['End-to-End Project', '10-20 weeks', 'You want a problem solved completely', 'A full five-phase engagement with milestone-based decisions and a production-ready solution.'],
+        ['Ongoing Partnership', 'Rolling quarterly', 'You need continuous improvement', 'Dedicated capacity for improvements, support, and new features after launch.']
+      ].map(([title, duration, ideal, outcome]) => (
+        <article class="card lift">
+          <span class="pill">{duration}</span>
+          <h3>{title}</h3>
+          <p><strong>Ideal for:</strong> {ideal}</p>
+          <p>{outcome}</p>
+        </article>
+      ))}
+    </div>
+    <div class="timeline-callout animate-on-scroll">
+      <strong>Most projects go from first call to production in 12-16 weeks.</strong>
+      <span>Discovery can start within 1 week of signing.</span>
+      <i aria-hidden="true"></i>
+    </div>
+  </div>
+</section>
+
+<style>
+  article h3 {
+    margin: 20px 0 12px;
+  }
+
+  article p {
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  .timeline-callout {
+    margin-top: 28px;
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius);
+    padding: 22px;
+    background: #fff;
+  }
+
+  .timeline-callout strong,
+  .timeline-callout span {
+    display: block;
+  }
+
+  .timeline-callout span {
+    color: var(--muted);
+  }
+
+  .timeline-callout i {
+    display: block;
+    height: 8px;
+    margin-top: 18px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+  }
+</style>

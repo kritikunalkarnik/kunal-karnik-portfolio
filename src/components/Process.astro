@@ -1,0 +1,116 @@
+---
+import { phases } from '../data/site';
+---
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head animate-on-scroll">
+      <span class="eyebrow">My Process</span>
+      <h2>Five phases from clarity to measurable adoption.</h2>
+      <div class="accent-line"></div>
+    </div>
+    <div class="process-list animate-on-scroll stagger-children">
+      {phases.map((phase, index) => (
+        <article class="phase card lift">
+          <div class="phase-head">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{phase.name}</h3>
+            <small>{phase.duration}</small>
+          </div>
+          <p>{phase.description}</p>
+          <div class="milestones">
+            <div><b>Business</b>{phase.business}</div>
+            <div><b>Technology</b>{phase.technology}</div>
+          </div>
+          <strong class="outputs-label">Key outputs</strong>
+          <ul>
+            {phase.deliverables.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .phase {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .phase-head {
+    display: grid;
+    gap: 8px;
+  }
+
+  .phase-head span {
+    color: var(--blue);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .phase-head h3 {
+    font-size: 1.05rem;
+  }
+
+  .phase-head small {
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .phase p {
+    margin-top: 16px;
+    color: #475569;
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .milestones {
+    display: grid;
+    gap: 8px;
+    margin-top: 16px;
+    color: #475569;
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .milestones b {
+    display: block;
+    color: var(--charcoal);
+  }
+
+  .outputs-label {
+    display: block;
+    margin-top: 16px;
+    color: var(--charcoal);
+    font-size: 0.86rem;
+  }
+
+  .phase ul {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    color: #475569;
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 1100px) {
+    .process-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .process-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

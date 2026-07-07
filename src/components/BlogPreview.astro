@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+<section class="section soft" id="blog">
+  <div class="container">
+    <div class="section-head animate-on-scroll">
+      <span class="eyebrow">Blog</span>
+      <h2>Writing on delivery, adoption, and practical systems.</h2>
+    </div>
+    <div class="grid three animate-on-scroll stagger-children">
+      {posts.map((post) => (
+        <BlogCard
+          href={`/blog/${post.slug}`}
+          title={post.data.title}
+          description={post.data.description}
+          category={post.data.category}
+          date={post.data.date}
+          image={post.data.image}
+        />
+      ))}
+    </div>
+    <p class="section-link"><a class="button secondary" href="/blog">Read Articles</a></p>
+  </div>
+</section>
+
+<style>
+  .section-link {
+    margin-top: 28px;
+    text-align: center;
+  }
+</style>

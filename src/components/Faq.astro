@@ -1,0 +1,56 @@
+---
+import { faqs } from '../data/site';
+---
+<section class="section soft" id="faq">
+  <div class="container faq">
+    <div class="section-head animate-on-scroll">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions clients ask early.</h2>
+    </div>
+    <div class="animate-on-scroll">
+      {faqs.map(([question, answer]) => (
+        <details>
+          <summary>{question}</summary>
+          <p>{answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    max-width: 820px;
+  }
+
+  details {
+    border-bottom: 1px solid var(--line);
+    padding: 20px 0;
+  }
+
+  summary {
+    cursor: pointer;
+    color: var(--charcoal);
+    font-weight: 850;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    content: '+';
+    float: right;
+    color: var(--blue);
+  }
+
+  details[open] summary::after {
+    content: '-';
+  }
+
+  p {
+    margin-top: 10px;
+    color: var(--muted);
+  }
+</style>

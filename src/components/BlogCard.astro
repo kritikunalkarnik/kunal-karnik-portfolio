@@ -1,0 +1,60 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  category: string;
+  date: Date;
+  image: string;
+}
+
+const { href, title, description, category, date, image } = Astro.props;
+---
+<a class="blog-card card lift" href={href}>
+  <img src={image} alt="" loading="lazy" />
+  <div>
+    <span class="pill">{category}</span>
+    <time datetime={date.toISOString()}>{date.toLocaleDateString('en', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+  </div>
+  <h3>{title}</h3>
+  <p>{description}</p>
+</a>
+
+<style>
+  .blog-card {
+    display: grid;
+    gap: 14px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  div,
+  h3,
+  p {
+    margin-inline: 20px;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  time {
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: var(--muted);
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+
+const projects = (await getCollection('portfolio')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const industries = [...new Set(projects.map((project) => project.data.industry))];
+---
+<BaseLayout title="Portfolio - Kunal Karnik">
+  <section class="page-hero">
+    <div class="container inner">
+      <span class="eyebrow">Portfolio</span>
+      <h1>Case studies for operational systems and digital workflows.</h1>
+      <p class="lead">Selected project narratives showing how focused discovery, practical engineering, and adoption support turn operational bottlenecks into measurable business outcomes.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="filters" aria-label="Industry filters">
+        <a class="pill" href="/portfolio">All</a>
+        {industries.map((industry) => <a class="pill" href={`/portfolio?industry=${industry.toLowerCase().replaceAll(' ', '-')}`}>{industry}</a>)}
+      </div>
+      <div class="grid three">
+        {projects.map((project) => (
+          <CaseStudyCard
+            href={`/portfolio/${project.slug}`}
+            title={project.data.title}
+            description={project.data.description}
+            industry={project.data.industry}
+            result={project.data.result}
+            image={project.data.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const categories = [...new Set(posts.map((post) => post.data.category))];
+---
+<BaseLayout title="Blog - Kunal Karnik">
+  <section class="page-hero">
+    <div class="container inner">
+      <span class="eyebrow">Blog</span>
+      <h1>Practical notes on technology delivery and operations.</h1>
+      <p class="lead">Articles for leaders deciding what to build, how to adopt it, and how to keep teams aligned.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="filters">
+        <a class="pill" href="/blog">All</a>
+        {categories.map((category) => <a class="pill" href={`/blog?category=${category.toLowerCase().replaceAll(' ', '-')}`}>{category}</a>)}
+      </div>
+      <div class="grid three">
+        {posts.map((post) => (
+          <BlogCard
+            href={`/blog/${post.slug}`}
+            title={post.data.title}
+            description={post.data.description}
+            category={post.data.category}
+            date={post.data.date}
+            image={post.data.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+</style>
